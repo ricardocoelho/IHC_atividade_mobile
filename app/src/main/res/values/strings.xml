@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Atividade 1</string>
+    <string name="txt_get_val">Enter a number</string>
+    <string name="txt_result">Result:</string>
+    <string name="txt_2">Name</string>
+    <string name="btn_back">return</string>
+
+
+
+
+
+</resources>
