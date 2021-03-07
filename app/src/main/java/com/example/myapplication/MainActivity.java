@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Intent;
+
 import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private EditText et1;
-    private EditText et2;
-    private TextView et3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,23 +18,14 @@ public class MainActivity extends AppCompatActivity {
         et1 = (EditText) findViewById(R.id.txt_number1); // ID from component
         //Toast.makeText(this, "Value: " + et1.getText().toString(), Toast.LENGTH_SHORT).show();
 
-        et2 = (EditText) findViewById(R.id.txt_number2); // ID from component
-        //Toast.makeText(this, "Value: " + et2.getText().toString(), Toast.LENGTH_SHORT).show();
-
-        et3 = (TextView) findViewById(R.id.textView1); // ID from component
-        et3.setText("RESULT: ");
-        //Toast.makeText(this, "Result: " + et3.getText().toString(), Toast.LENGTH_SHORT).show();
-        // The activity is created
     }
 
-    public void somar(View view) {
-        try {
-            int sum = Integer.parseInt(et1.getText().toString()) + Integer.parseInt(et2.getText().toString());
-            et3.setText("RESULT: " + Integer.toString(sum));
-        } catch (NumberFormatException e) {
-            et3.setText("RESULT: ");
-        }
-//code here
+    public void sendMsg(View view) {
+        Intent i = new Intent(this, ShowMessageActivity.class);
+        i.putExtra("data", et1.getText().toString());
+        startActivity(i);
     }
+
+
 }
 
