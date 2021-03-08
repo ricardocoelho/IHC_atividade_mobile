@@ -1,40 +1,55 @@
 package com.example.myapplication;
 import com.example.myapplication.R;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-public class MainActivity extends AppCompatActivity {
-    private EditText et1;
-    private EditText et2;
-    private TextView et3;
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    private SensorManager sensorManager;
+    private Sensor light;
+    TextView lightValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        et1 = (EditText) findViewById(R.id.txt_number1); // ID from component
-        //Toast.makeText(this, "Value: " + et1.getText().toString(), Toast.LENGTH_SHORT).show();
+        lightValue = (TextView)findViewById(R.id.light);
 
-        et2 = (EditText) findViewById(R.id.txt_number2); // ID from component
-        //Toast.makeText(this, "Value: " + et2.getText().toString(), Toast.LENGTH_SHORT).show();
+        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-        et3 = (TextView) findViewById(R.id.textView1); // ID from component
-        et3.setText("RESULT: ");
+        if (light != null) this.sensorManager.registerListener(MainActivity.this, light, sensorManager.SENSOR_DELAY_NORMAL);
+        else lightValue.setText("Light sensor not available");
+
         //Toast.makeText(this, "Result: " + et3.getText().toString(), Toast.LENGTH_SHORT).show();
         // The activity is created
     }
 
-    public void somar(View view) {
-        try {
-            int sum = Integer.parseInt(et1.getText().toString()) + Integer.parseInt(et2.getText().toString());
-            et3.setText("RESULT: " + Integer.toString(sum));
-        } catch (NumberFormatException e) {
-            et3.setText("RESULT: ");
-        }
-//code here
+    @Override
+    public void onAccuracyChanged(Sensor arg0, int arg1) {
+
     }
+
+    @Override
+    public void onSensorChanged(SensorEvent event)
+    {
+        Sensor sensor = event.sensor;
+        if(sensor.getType() == Sensor.TYPE_LIGHT){
+            lightValue.setText("Light intensity: " + event.values[0]); }
+
+
+    }
+
+
+
 }
 

@@ -6,48 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/txt_number1"
+    <TextView
+        android:id="@+id/light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:hint= "@string/txt_get_val"
-        android:inputType="number"
-        android:textSize="24sp"
+        android:layout_gravity="top"
+        android:layout_marginTop="100dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="Light intensity"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txt_number2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:hint="@string/txt_get_val"
-        android:inputType="number"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_number1" />
 
-    <Button
-        android:id="@+id/btn_sumar"
-        android:layout_width="99dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="40dp"
-        android:onClick="somar"
-        android:text="SUM"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_number2" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sumar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
