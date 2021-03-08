@@ -1,11 +1,14 @@
 package com.example.myapplication;
 import com.example.myapplication.R;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     EditText accelX, accelY, accelZ ;
     EditText gyroX, gyroY, gyroZ;
     EditText magnetX, magnetY, magnetZ ;
+    Button getGPSBtn;
+
 
 
     @Override
@@ -28,6 +33,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
         lightValue = (TextView)findViewById(R.id.light);
         pressureValue  = (TextView)findViewById(R.id.pressure);
+        getGPSBtn = (Button)findViewById(R.id.GPSBtn);
+
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},123);
+
+        getGPSBtn.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View v) {
+                                             GPSTracker g = new GPSTracker(getApplicationContext());
+                                             Location l = g.getLocation();
+                                             if (l != null) {
+                                                 double lat = l.getLatitude();
+                                                 double longi = l.getLongitude();
+                                                 Toast.makeText(getApplicationContext(), "LAT: " + lat + "LONG: " +
+                                                         longi, Toast.LENGTH_LONG).show();
+                                             }
+                                         }
+                                     });
+
+
 
         accelX = (EditText)findViewById(R.id.accelX); accelX.setEnabled(false);
         accelY = (EditText)findViewById(R.id.accelY); accelY.setEnabled(false);
@@ -70,8 +95,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     @Override
-    public void onSensorChanged(SensorEvent event)
-    {
+    public void onSensorChanged(SensorEvent event) {
         Sensor sensor = event.sensor;
         switch(event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
@@ -99,6 +123,4 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 break;
         }
     }
-
 }
-
