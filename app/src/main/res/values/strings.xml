@@ -1,10 +1,15 @@
 <resources>
-    <string name="app_name">Parte2 Atividade 1</string>
+    <string name="app_name">Parte2 Atividade 2</string>
     <string name="txt_get_val">Enter a number</string>
     <string name="txt_result">Result:</string>
     <string name="txt_2">Name</string>
     <string name="btn_back">return</string>
-
+    <string name="edit_x">X</string>
+    <string name="edit_y">Y</string>
+    <string name="edit_z">Z</string>
+    <string name="header_accel">Accelerometer</string>
+    <string name="header_gyro">Gyrometer</string>
+    <string name="header_magnet">Magnetometer</string>
 
 
 
